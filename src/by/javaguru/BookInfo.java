@@ -2,7 +2,7 @@ package by.javaguru;
 
 import lombok.*;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -11,7 +11,11 @@ import java.time.LocalDate;
 @ToString
 public class BookInfo {
     private Book book;
-//    private LocalDate borrowDate;
+    //    private LocalDate borrowDate;
     private boolean isFree;
-    private Reader reader;
+    private List<Reader> readerList;
+
+    public void updateAvailability() {
+        setFree(book.getCount() > readerList.size());
+    }
 }

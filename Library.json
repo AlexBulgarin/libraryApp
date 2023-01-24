@@ -1,1 +1,66 @@
-{"readerMap":{"andrei":{"login":"andrei","pwd":"123"}},"bookInfoMap":{}}
+{
+  "readerMap": {
+    "andrei": {
+      "login": "andrei",
+      "pwd": "123"
+    },
+    "sven": {
+      "login": "sven",
+      "pwd": "qwe90"
+    },
+    "messi": {
+      "login": "messi",
+      "pwd": "leon"
+    },
+    "hanna": {
+      "login": "hanna",
+      "pwd": "1qaz"
+    },
+    "iron": {
+      "login": "iron",
+      "pwd": "man"
+    }
+  },
+  "bookInfoMap": {
+    "Ревизор": {
+      "book": {
+        "name": "Ревизор",
+        "author": "Гоголь",
+        "count": 3
+      },
+      "readerList": [
+        {
+          "login": "iron",
+          "pwd": "man"
+        },
+        {
+          "login": "messi",
+          "pwd": "leon"
+        },
+        {
+          "login": "hanna",
+          "pwd": "1qaz"
+        }
+      ],
+      "free": false
+    },
+    "Война и мир": {
+      "book": {
+        "name": "Война и мир",
+        "author": "Толстой",
+        "count": 3
+      },
+      "readerList": [
+        {
+          "login": "andrei",
+          "pwd": "123"
+        },
+        {
+          "login": "sven",
+          "pwd": "qwe90"
+        }
+      ],
+      "free": true
+    }
+  }
+}

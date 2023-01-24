@@ -16,52 +16,74 @@ public class LibraryView {
         while (true) {
             String action = scanner.next();
             switch (action) {
-                case "info":
-                    System.out.println(rb.getString("lb.info"));
-                    break;
-                case "add":
-                    System.out.println("Введите логин:");
+                case "info" -> System.out.println(rb.getString("lb.info"));
+                case "add" -> {
+                    System.out.println(rb.getString("enterLogin"));
                     String login = scanner.next();
-                    System.out.println("Введите пароль:");
+                    System.out.println(rb.getString("enterPassword"));
                     String pwd = scanner.next();
-                    String result = libraryApp.add(login, pwd);
-                    System.out.println(result);
-                    break;
-                case "delete":
-                    break;
-                case "update":
-                    break;
-                case "addbook":
-                    System.out.println("Введите название книги:");
-                    String name = scanner.next();
-                    System.out.println("Введите автора:");
+                    libraryApp.add(login, pwd);
+                }
+                case "delete" -> {
+                    System.out.println(rb.getString("enterLogin"));
+                    String login1 = scanner.next();
+                    System.out.println(rb.getString("enterPassword"));
+                    String pwd1 = scanner.next();
+                    libraryApp.delete(login1, pwd1);
+                }
+                case "update" -> {
+                    System.out.println(rb.getString("enterLogin"));
+                    String login2 = scanner.next();
+                    System.out.println(rb.getString("enterOldPassword"));
+                    String oldPwd = scanner.next();
+                    System.out.println(rb.getString("enterNewPassword"));
+                    String newPwd = scanner.next();
+                    libraryApp.update(login2, oldPwd, newPwd);
+                }
+                case "addbook" -> {
+                    System.out.println(rb.getString("enterBookName"));
+                    scanner.nextLine();
+                    String name = scanner.nextLine();
+                    System.out.println(rb.getString("enterAuthor"));
                     String author = scanner.next();
-                    System.out.println("Введите количесвто книг:");
+                    System.out.println(rb.getString("enterBookQuantity"));
                     int count = scanner.nextInt();
                     libraryApp.addBook(name, author, count);
-                    break;
-                case "borrowbook":
-                    break;
-                case "returnbook":
-                    break;
-                case "chooselanguage":
+                }
+                case "borrowbook" -> {
+                    System.out.println(rb.getString("enterLogin"));
+                    String login3 = scanner.next();
+                    System.out.println(rb.getString("enterPassword"));
+                    String pwd3 = scanner.next();
+                    System.out.println(rb.getString("enterBookName"));
+                    scanner.nextLine();
+                    String name3 = scanner.nextLine();
+                    libraryApp.getBook(login3, pwd3, name3);
+                }
+                case "returnbook" -> {
+                    System.out.println(rb.getString("enterLogin"));
+                    String login4 = scanner.next();
+                    System.out.println(rb.getString("enterPassword"));
+                    String pwd4 = scanner.next();
+                    System.out.println(rb.getString("enterBookName"));
+                    scanner.nextLine();
+                    String name4 = scanner.nextLine();
+                    libraryApp.returnBook(login4, pwd4, name4);
+                }
+                case "changelanguage" -> {
                     System.out.println("Choose language: EN or RU | Выберите языка: EN или RU");
-                    String language = scanner.next();
-                    if (language.equals("EN")) {
+                    String language = scanner.next().toLowerCase();
+                    if (language.equals("en")) {
                         loadProperties("en");
-                    } else if (language.equals("RU")) {
+                    } else if (language.equals("ru")) {
                         loadProperties("ru");
                     } else {
                         loadProperties("ru");
                     }
-                    break;
-                case "print":
-                    libraryApp.print();
-                    break;
-                default:
-                    System.out.println("Такой команды нет, наберите 'info' " +
-                            "чтобы получить список команд");
-
+                    System.out.println(rb.getString("lb.info"));
+                }
+                case "print" -> libraryApp.print();
+                default -> System.out.println(rb.getString("wrongCommand"));
             }
         }
     }
@@ -69,10 +91,10 @@ public class LibraryView {
     private static void init(Scanner scanner, ILibraryApplication libraryApp) {
         libraryApp.pullData();
         System.out.println("Choose language: EN or RU | Выберите языка: EN или RU");
-        String language = scanner.next();
-        if (language.equals("EN")) {
+        String language = scanner.next().toLowerCase();
+        if (language.equals("en")) {
             loadProperties("en");
-        } else if (language.equals("RU")) {
+        } else if (language.equals("ru")) {
             loadProperties("ru");
         } else {
             loadProperties("ru");
@@ -80,8 +102,8 @@ public class LibraryView {
         System.out.println(rb.getString("lb.info"));
     }
 
-    private static void loadProperties(String languege) {
-        Locale locale = new Locale(languege);
+    private static void loadProperties(String language) {
+        Locale locale = new Locale(language);
         rb = ResourceBundle.getBundle("library", locale);
     }
 }

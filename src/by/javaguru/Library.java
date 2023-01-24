@@ -13,5 +13,5 @@ import java.util.Map;
 @ToString
 public class Library {
     private Map<String, Reader> readerMap = new HashMap<>();
-    private Map<String, List<BookInfo>> bookInfoMap = new HashMap<>();
+    private Map<String, BookInfo> bookInfoMap = new HashMap<>();
 }
